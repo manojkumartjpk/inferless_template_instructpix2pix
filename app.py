@@ -37,7 +37,7 @@ class InferlessPythonModel:
 
         images_array = np.uint8(images[0])
         output_array = np.array(images_array, dtype=np.float32)
-        return output_array
+        return {"generated_image": output_array}
 
     def finalize(self):
         self.pipe = None
