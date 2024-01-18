@@ -22,14 +22,14 @@ class InferlessPythonModel:
             self.pipe.scheduler.config
         )
 
-    def infer(self, prompt, image_url):
-        url = image_url
+    def infer(self, inputs):
+        url = inputs["image_url"]
         image = PIL.Image.open(req.get(url, stream=True).raw)
         image = PIL.ImageOps.exif_transpose(image)
         image = image.convert("RGB")
 
         images = self.pipe(
-            prompt,
+            inputs["prompt"],
             image=image,
             num_inference_steps=10,
             image_guidance_scale=1,
